@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <meta charset="UTF-8">
+  <title>Test Findrisc - ISSSTE</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f9f9f9;
+    }
+    h1, h2 {
+      color: #005A9C;
+    }
+    .form-section {
+      margin-bottom: 30px;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    label,
+    input[type="number"],
+    select {
+      font-size: 1em;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+    input[type="number"], select {
+      width: 250px;
+      padding: 5px;
+      margin-top: 5px;
+    }
+    .result {
+      font-weight: bold;
+      margin-top: 20px;
+      font-size: 1.6em;
+    }
+    #riesgo {
+      font-size: 1.6em;
+      font-weight: bold;
+      display: inline-block;
+      margin-top: 10px;
+    }
+    button {
+      background-color: #0078D4;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin-top: 15px;
+      margin-right: 10px;
+      border-radius: 6px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #005A9C;
+    }
+    .logo {
+      max-width: 250px;
+      display: block;
+      margin-bottom: 20px;
+    }
+    .extra-form {
+      margin-top: 40px;
+      text-align: center;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .extra-form a {
+      font-size: 1.2em;
+      color: #0078D4;
+      text-decoration: underline;
+    }
+    .extra-form a:hover {
+      color: #005A9C;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Logo del programa -->
+  <img src="C:\Users\LENOVO\Desktop\Riesgo DM\MIDE LOGO.png" alt="Logo MIDE ISSSTE" class="logo">
+
+  <h1>¡Gracias por escanear el QR!</h1>
+  <h2>Por favor, contesta todos los campos </h2>
+  <p>Al final selecciona el botón "Calcular" para conocer tu resultado.</p>
+
+  <div class="form-section">
+    <h2>Test Findrisc</h2>
+    <form id="findrisc-form">
+      <!-- Datos numéricos -->
+      <label for="sexo">Sexo:</label>
+      <select id="sexo">
+        <option value="">Seleccione</option>
+        <option value="hombre">Hombre</option>
+        <option value="mujer">Mujer</option>
+      </select>
+
+      <label for="edad">Edad (años):</label>
+      <input type="number" id="edad" min="0">
+
+      <label for="talla">Talla (m):</label>
+      <input type="number" id="talla" step="0.01" min="0">
+
+      <label for="peso">Peso (kg):</label>
+      <input type="number" id="peso" step="0.1" min="0">
+
+      <label for="imc">IMC (se calcula automáticamente):</label>
+      <input type="number" id="imc" step="0.1" readonly>
+
+      <label for="cintura">Perímetro de cintura (cm):</label>
+      <input type="number" id="cintura" min="0">
+
+      <!-- Preguntas -->
+      <label for="ejercicio">¿Realiza ejercicio al menos 30 min al día?</label>
+      <select id="ejercicio">
+        <option value="">Seleccione</option>
+        <option value="0">Sí (0 puntos)</option>
+        <option value="2">No (2 puntos)</option>
+      </select>
+
+      <label for="frutas">¿Come frutas o verduras todos los días?</label>
+      <select id="frutas">
+        <option value="">Seleccione</option>
+        <option value="0">Sí (0 puntos)</option>
+        <option value="1">No (1 punto)</option>
+      </select>
+
+      <label for="hipertension">¿Toma medicina para la hipertensión regularmente?</label>
+      <select id="hipertension">
+        <option value="">Seleccione</option>
+        <option value="0">No (0 puntos)</option>
+        <option value="2">Sí (2 puntos)</option>
+      </select>
+
+      <label for="glucosa">¿Le han encontrado alguna vez valores altos de glucosa?</label>
+      <select id="glucosa">
+        <option value="">Seleccione</option>
+        <option value="0">No (0 puntos)</option>
+        <option value="5">Sí (5 puntos)</option>
+      </select>
+
+      <label for="familiar">¿Algún familiar tiene diabetes tipo I o II?</label>
+      <select id="familiar">
+        <option value="">Seleccione</option>
+        <option value="0">No (0 puntos)</option>
+        <option value="3">Sí: abuelo, tío, primo (3 puntos)</option>
+        <option value="5">Sí: padre, madre, hermano/a, hijo/a (5 puntos)</option>
+      </select>
+
+      <!-- Resultados -->
+      <div class="result">
+        <p>Total: <span id="total">0</span></p>
+        <p>Tu riesgo es: <span id="riesgo">Riesgo bajo</span></p>
+      </div>
+
+      <!-- Botones -->
+      <button type="reset" onclick="resetForm()">Restablecer test</button>
+      <button type="button" onclick="calcularFindrisc()">Calcular</button>
+    </form>
+  </div>
+
+  <!-- Enlace al formulario adicional -->
+  <div class="extra-form">
+  <p style="font-size: 1.8em; font-weight: bold;">
+    Tu opinión es muy importante, ayúdanos a contestar la siguiente encuesta
+  </p>
+  <a href="https://forms.office.com/r/nxpNZUXeAc" target="_blank">
+    Haz clic aquí para llenar la encuesta
+  </a>
+</div>
+
+  <script>
+    function calcularFindrisc() {
+      const edad = parseInt(document.getElementById('edad').value) || 0;
+      const talla = parseFloat(document.getElementById('talla').value) || 0;
+      const peso = parseFloat(document.getElementById('peso').value) || 0;
+      const cintura = parseInt(document.getElementById('cintura').value) || 0;
+      const sexo = document.getElementById('sexo').value;
+
+      // Calcular IMC
+      let imc = 0;
+      if (talla > 0) {
+        imc = peso / (talla * talla);
+        document.getElementById('imc').value = imc.toFixed(1);
+      }
+
+      let total = 0;
+
+      // Edad
+      if (edad >= 45 && edad <= 54) total += 2;
+      else if (edad >= 55 && edad <= 64) total += 3;
+      else if (edad >= 65) total += 4;
+
+      // IMC
+      if (imc >= 25 && imc < 30) total += 1;
+      else if (imc >= 30) total += 3;
+
+      // Cintura
+      if ((sexo === "hombre" && cintura >= 94 && cintura <= 102) ||
+          (sexo === "mujer" && cintura >= 80 && cintura <= 88)) total += 3;
+      else if ((sexo === "hombre" && cintura > 102) ||
+               (sexo === "mujer" && cintura > 88)) total += 4;
+
+      // Preguntas tipo select
+      const campos = ['ejercicio', 'frutas', 'hipertension', 'glucosa', 'familiar'];
+      campos.forEach(id => {
+        const valor = document.getElementById(id).value;
+        if (valor !== "") total += Number(valor);
+      });
+
+      // Resultado
+      document.getElementById('total').textContent = total;
+      const riesgoSpan = document.getElementById('riesgo');
+      let riesgo = "Riesgo bajo";
+      let color = "green";
+
+      if (total < 7) {
+        riesgo = "Riesgo bajo";
+        color = "green";
+          } else if (total >= 7 && total <= 11) {
+        riesgo = "Riesgo ligeramente elevado";
+        color = "orange";
+      } else if (total >= 12 && total <= 14) {
+        riesgo = "Riesgo Moderado";
+        color = "goldenrod";
+      } else if (total >= 15 && total <= 20) {
+        riesgo = "Riesgo alto";
+        color = "red";
+      } else if (total > 20) {
+        riesgo = "Riesgo muy alto";
+        color = "darkred";
+      }
+
+      riesgoSpan.textContent = riesgo;
+      riesgoSpan.style.color = color;
+    }
+
+    function resetForm() {
+      document.getElementById('total').textContent = "0";
+      const riesgoSpan = document.getElementById('riesgo');
+      riesgoSpan.textContent = "Riesgo bajo";
+      riesgoSpan.style.color = "orangered";
+      document.getElementById('imc').value = "";
+    }
+  </script>
+
+</body>
+</html>
+
