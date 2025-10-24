@@ -174,7 +174,11 @@
 
       <!-- Botones -->
       <button type="reset" onclick="resetForm()">Restablecer test</button>
-      <button type="button" onclick="calcularFindrisc()">Calcular</button>
+      <button type="button" onclick="calcularFindrisc(); gtag('event', 'submit_encuesta', {
+  event_category: 'Encuesta',
+  event_label: 'Botón Calcular',
+  value: 1
+});">Calcular</button>
     </form>
   </div>
 
@@ -265,6 +269,7 @@
 
 </body>
 </html>
+
 
 
 
