@@ -241,16 +241,16 @@
         riesgo = "Riesgo bajo, realizar nuevamente el cuestionario en 1 año.";
         color = "green";
           } else if (total >= 7 && total <= 11) {
-        riesgo = "Riesgo ligeramente elevado, se debe considerar evaluación con glucosa capilar en ayuno de 8 horas.";
+        riesgo = "Riesgo ligeramente elevado, se debe considerar evaluación con glucosa capilar en ayuno de 8 horas, asiste a tu unidad médica.";
         color = "orange";
       } else if (total >= 12 && total <= 14) {
-        riesgo = "Riesgo Moderado, se debe considerar la evaluación con glucosa plasmatica en ayuno de 8 horas.";
+        riesgo = "Riesgo Moderado, se debe considerar la evaluación con glucosa plasmatica en ayuno de 8 horas,asiste a tu unidad médica.";
         color = "goldenrod";
       } else if (total >= 15 && total <= 20) {
-        riesgo = "Riesgo alto, realizar evaluación con glucosa plasmatica en ayuno de 8 horas.";
+        riesgo = "Riesgo alto, realizar evaluación con glucosa plasmatica en ayuno de 8 horas, asiste a tu unidad médica.";
         color = "red";
       } else if (total > 20) {
-        riesgo = "Riesgo muy alto, realizar evaluación con hemoglobina glucosilada plasmatica.";
+        riesgo = "Riesgo muy alto, realizar evaluación con hemoglobina glucosilada plasmatica, asiste a tu unidad médica.";
         color = "red";
       }
 
@@ -262,13 +262,14 @@
       document.getElementById('total').textContent = "0";
       const riesgoSpan = document.getElementById('riesgo');
       riesgoSpan.textContent = "Riesgo bajo";
-      riesgoSpan.style.color = "orangered";
+      riesgoSpan.style.color = "green";
       document.getElementById('imc').value = "";
     }
   </script>
 
 </body>
 </html>
+
 
 
 
